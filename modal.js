@@ -11,6 +11,13 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const firstData = document.getElementById("first");
+const lastData = document.getElementById("last");
+const emailData = document.getElementById("email");
+const birthdateData = document.getElementById("birthdate");
+const quantityData = document.getElementById("quantity");
+const locationData = document.querySelectorAll('input[name="location"]');
+const dataCheckBox = document.getElementById('checkbox1');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
