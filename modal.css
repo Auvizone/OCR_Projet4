@@ -68,6 +68,11 @@ img {
   display: none;
 }
 
+.errorMessage {
+  font-size: 16px;
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
   .topnav a.icon {

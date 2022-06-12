@@ -34,5 +34,31 @@ function closeModal() {
 
 // cancel form submit
 function validate(event) {
-  event.preventDefault()
+  event.preventDefault();
+  let valid = true;
+  console.log('here')
+  document.getElementById("firstErrorMessage").style.display = "none";
+  if (firstData.value.length < 2) {
+    document.getElementById("firstErrorMessage").style.display = "block";
+    value = false;
+    console.log('test', value)
+  }
+}
+
+function submit(event) {
+  event.preventDefault();
+  let valid = true;
+  document.getElementById("firstErrorMessage").style.display = "none";
+  document.getElementById("lastErrorMessage").style.display = "none";
+  document.getElementById("emailErrorMessage").style.display = "none";
+  document.getElementById("birthdateErrorMessage").style.display = "none";
+  document.getElementById("quantityErrorMessage").style.display = "none";
+  document.getElementById("locationErrorMessage").style.display = "none";
+  document.getElementById("firstErrorMessage").style.display = "none";
+
+  if (firstData.value.length < 2) {
+    document.getElementById("firstErrorMessage").style.display = "block";
+    value = false;
+    console.log('test', value)
+  }
 }
