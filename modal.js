@@ -36,29 +36,58 @@ function closeModal() {
 function validate(event) {
   event.preventDefault();
   let valid = true;
-  console.log('here')
-  document.getElementById("firstErrorMessage").style.display = "none";
-  if (firstData.value.length < 2) {
-    document.getElementById("firstErrorMessage").style.display = "block";
-    value = false;
-    console.log('test', value)
-  }
-}
-
-function submit(event) {
-  event.preventDefault();
-  let valid = true;
+  let selected;
   document.getElementById("firstErrorMessage").style.display = "none";
   document.getElementById("lastErrorMessage").style.display = "none";
   document.getElementById("emailErrorMessage").style.display = "none";
   document.getElementById("birthdateErrorMessage").style.display = "none";
   document.getElementById("quantityErrorMessage").style.display = "none";
   document.getElementById("locationErrorMessage").style.display = "none";
-  document.getElementById("firstErrorMessage").style.display = "none";
 
   if (firstData.value.length < 2) {
     document.getElementById("firstErrorMessage").style.display = "block";
     value = false;
-    console.log('test', value)
+  }
+  if (lastData.value.length < 2) {
+    document.getElementById("lastErrorMessage").style.display = "block";
+    value = false;
+  }
+  if (birthdateData.value == '') {
+    document.getElementById("birthdateErrorMessage").style.display = "block";
+    value = false;
+  }
+  if (quantityData.value == '') {
+    document.getElementById("quantityErrorMessage").style.display = "block";
+    value = false;
+  }
+  if (quantityData.value == '') {
+    document.getElementById("quantityErrorMessage").style.display = "block";
+    value = false;
+  }
+  for (const radioButton of locationData) {
+    if (radioButton.checked) {
+      selected = radioButton.value
+    }
+  }
+  if (selected == undefined) {
+    document.getElementById('locationErrorMessage').style.display="block"
   }
 }
+
+// function submit(event) {
+//   event.preventDefault();
+//   let valid = true;
+//   document.getElementById("firstErrorMessage").style.display = "none";
+//   document.getElementById("lastErrorMessage").style.display = "none";
+//   document.getElementById("emailErrorMessage").style.display = "none";
+//   document.getElementById("birthdateErrorMessage").style.display = "none";
+//   document.getElementById("quantityErrorMessage").style.display = "none";
+//   document.getElementById("locationErrorMessage").style.display = "none";
+//   document.getElementById("firstErrorMessage").style.display = "none";
+
+//   if (firstData.value.length < 2) {
+//     document.getElementById("firstErrorMessage").style.display = "block";
+//     value = false;
+//     console.log('test', value)
+//   }
+// }
