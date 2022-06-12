@@ -27,6 +27,12 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// close modal event
 function closeModal() {
   modalbg.style.display = "none";
+}
+
+// cancel form submit
+function validate(event) {
+  event.preventDefault()
 }
