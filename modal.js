@@ -90,6 +90,7 @@ function validate(event) {
   if (valid == false) {
     event.preventDefault();
   } else {
-    return
+    modalbg.style.display = "none";
+   alert('Merci ! Votre réservation a été recue.')
   }
 }
