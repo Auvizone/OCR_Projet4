@@ -17,7 +17,7 @@ const emailData = document.getElementById("email");
 const birthdateData = document.getElementById("birthdate");
 const quantityData = document.getElementById("quantity");
 const locationData = document.querySelectorAll('input[name="location"]');
-const dataCheckBox = document.getElementById('checkbox1');
+const conditionCheckBox = document.getElementById('checkbox1');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -34,7 +34,8 @@ function closeModal() {
 
 // cancel form submit
 function validate(event) {
-  event.preventDefault();
+  // mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
   let valid = true;
   let selected;
   document.getElementById("firstErrorMessage").style.display = "none";
@@ -43,26 +44,35 @@ function validate(event) {
   document.getElementById("birthdateErrorMessage").style.display = "none";
   document.getElementById("quantityErrorMessage").style.display = "none";
   document.getElementById("locationErrorMessage").style.display = "none";
+  document.getElementById("conditionMessage").style.display = "none";
+  document.getElementById("locationErrorMessage").style.display = "none";
+  document.getElementById('conditionMessage').style.display="none"
+
 
   if (firstData.value.length < 2) {
     document.getElementById("firstErrorMessage").style.display = "block";
-    value = false;
+    valid = false;
   }
   if (lastData.value.length < 2) {
     document.getElementById("lastErrorMessage").style.display = "block";
-    value = false;
+    valid = false;
+    console.log(valid)
+
   }
+  // if(emailData.match(mailFormat)) {
+  //   console.log('email good')
+  // }
   if (birthdateData.value == '') {
     document.getElementById("birthdateErrorMessage").style.display = "block";
-    value = false;
+    valid = false;
   }
   if (quantityData.value == '') {
     document.getElementById("quantityErrorMessage").style.display = "block";
-    value = false;
+    valid = false;
   }
   if (quantityData.value == '') {
     document.getElementById("quantityErrorMessage").style.display = "block";
-    value = false;
+    valid = false;
   }
   for (const radioButton of locationData) {
     if (radioButton.checked) {
@@ -71,23 +81,15 @@ function validate(event) {
   }
   if (selected == undefined) {
     document.getElementById('locationErrorMessage').style.display="block"
+    valid = false;
+  }
+  if (conditionCheckBox.checked == false) {
+    document.getElementById('conditionMessage').style.display="block"
+    valid = false;
+  }
+  if (valid == false) {
+    event.preventDefault();
+  } else {
+    return
   }
 }
-
-// function submit(event) {
-//   event.preventDefault();
-//   let valid = true;
-//   document.getElementById("firstErrorMessage").style.display = "none";
-//   document.getElementById("lastErrorMessage").style.display = "none";
-//   document.getElementById("emailErrorMessage").style.display = "none";
-//   document.getElementById("birthdateErrorMessage").style.display = "none";
-//   document.getElementById("quantityErrorMessage").style.display = "none";
-//   document.getElementById("locationErrorMessage").style.display = "none";
-//   document.getElementById("firstErrorMessage").style.display = "none";
-
-//   if (firstData.value.length < 2) {
-//     document.getElementById("firstErrorMessage").style.display = "block";
-//     value = false;
-//     console.log('test', value)
-//   }
-// }
