@@ -59,15 +59,12 @@ function validate(event) {
     console.log(valid)
 
   }
-  // if(emailData.match(mailFormat)) {
-  //   console.log('email good')
-  // }
-  if (birthdateData.value == '') {
-    document.getElementById("birthdateErrorMessage").style.display = "block";
+  if (!emailData.value.includes('@' && '.')) {
+    document.getElementById("emailErrorMessage").style.display = "block";
     valid = false;
   }
-  if (quantityData.value == '') {
-    document.getElementById("quantityErrorMessage").style.display = "block";
+  if (birthdateData.value == '') {
+    document.getElementById("birthdateErrorMessage").style.display = "block";
     valid = false;
   }
   if (quantityData.value == '') {
