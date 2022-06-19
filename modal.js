@@ -58,7 +58,6 @@ function validate(event) {
     document.getElementById("divSurname").setAttribute("data-error-visible", "true")
     valid = false;
   }
-  console.log('email Valid', this.emailValid)
   if (this.emailValid == false) {
     document.getElementById("divEmail").setAttribute("data-error-visible", "true")
     valid = false;
@@ -96,7 +95,6 @@ function validate(event) {
 function validateEmail(email) {
   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
   if (reg.test(email.value) == false) {
-    console.log('invalide');
     emailValid = false;
   } else {
     emailValid = true;
