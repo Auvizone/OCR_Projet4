@@ -9,6 +9,7 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
+const modalClose = document.querySelector(".thanks");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const firstData = document.getElementById("first");
@@ -34,41 +35,40 @@ function closeModal() {
 
 // cancel form submit
 function validate(event) {
-  // mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
+  event.preventDefault();
   let valid = true;
+  let emailValid;
   let selected;
-  document.getElementById("firstErrorMessage").style.display = "none";
-  document.getElementById("lastErrorMessage").style.display = "none";
-  document.getElementById("emailErrorMessage").style.display = "none";
-  document.getElementById("birthdateErrorMessage").style.display = "none";
-  document.getElementById("quantityErrorMessage").style.display = "none";
-  document.getElementById("locationErrorMessage").style.display = "none";
-  document.getElementById("conditionMessage").style.display = "none";
-  document.getElementById("locationErrorMessage").style.display = "none";
-  document.getElementById('conditionMessage').style.display="none"
+
+  document.getElementById("divName").setAttribute("data-error-visible", "false")
+  document.getElementById("divSurname").setAttribute("data-error-visible", "false")
+  document.getElementById("divEmail").setAttribute("data-error-visible", "false")
+  document.getElementById("divBirthday").setAttribute("data-error-visible", "false")
+  document.getElementById("divQuantity").setAttribute("data-error-visible", "false")
+  document.getElementById("divLocation").setAttribute("data-error-visible", "false")
+  document.getElementById("divCondition").setAttribute("data-error-visible", "false")
 
 
-  if (firstData.value.length < 2) {
-    document.getElementById("firstErrorMessage").style.display = "block";
+  this.validateEmail(email);
+  if ((firstData.value.length < 2) || (/[^a-zA-Z]/.test(firstData.value)) || (first.value.length > 50)) {
+    document.getElementById("divName").setAttribute("data-error-visible", "true")
     valid = false;
   }
-  if (lastData.value.length < 2) {
-    document.getElementById("lastErrorMessage").style.display = "block";
-    valid = false;
-    console.log(valid)
-
-  }
-  if (!emailData.value.includes('@' && '.')) {
-    document.getElementById("emailErrorMessage").style.display = "block";
+  if ((lastData.value.length < 2) || (/[^a-zA-Z]/.test(lastData.value))) {
+    document.getElementById("divSurname").setAttribute("data-error-visible", "true")
     valid = false;
   }
-  if (birthdateData.value == '') {
-    document.getElementById("birthdateErrorMessage").style.display = "block";
+  console.log('email Valid', this.emailValid)
+  if (this.emailValid == false) {
+    document.getElementById("divEmail").setAttribute("data-error-visible", "true")
     valid = false;
   }
-  if (quantityData.value == '') {
-    document.getElementById("quantityErrorMessage").style.display = "block";
+  if (!birthdateData.value) {
+    document.getElementById("divBirthday").setAttribute("data-error-visible", "true")
+    valid = false;
+  }
+  if (!quantityData.value) {
+    document.getElementById("divQuantity").setAttribute("data-error-visible", "true")
     valid = false;
   }
   for (const radioButton of locationData) {
@@ -76,18 +76,29 @@ function validate(event) {
       selected = radioButton.value
     }
   }
-  if (selected == undefined) {
-    document.getElementById('locationErrorMessage').style.display="block"
+  if (!selected) {
+    document.getElementById("divLocation").setAttribute("data-error-visible", "true")
     valid = false;
   }
-  if (conditionCheckBox.checked == false) {
-    document.getElementById('conditionMessage').style.display="block"
+  if (!conditionCheckBox.checked) {
+    document.getElementById("divCondition").setAttribute("data-error-visible", "true")
     valid = false;
   }
   if (valid == false) {
     event.preventDefault();
   } else {
-    modalbg.style.display = "none";
-   alert('Merci ! Votre réservation a été recue.')
+    event.preventDefault();
+    modalClose.style.display = "block";
+
+  }
+}
+
+function validateEmail(email) {
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (reg.test(email.value) == false) {
+    console.log('invalide');
+    emailValid = false;
+  } else {
+    emailValid = true;
   }
 }
