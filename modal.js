@@ -37,7 +37,6 @@ function closeModal() {
 function validate(event) {
   event.preventDefault();
   let valid = true;
-  let emailValid;
   let selected;
 
   document.getElementById("divName").setAttribute("data-error-visible", "false")
